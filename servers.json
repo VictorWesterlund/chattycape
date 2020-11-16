@@ -1,0 +1,5 @@
+{
+	"us.mineplex.net": [
+		"/(?<=\\[CHAT\\])(.*)(?=ULTRA|HERO|LEGEND|TITAN|ETERNAL|IMMORTAL|TRAINEE|MOD)/g"
+	]
+}
