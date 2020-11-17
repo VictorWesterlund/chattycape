@@ -1,5 +1,39 @@
 {
-	"us.mineplex.net": [
-		"/(?<=\\[CHAT\\])(.*)(?=ULTRA|HERO|LEGEND|TITAN|ETERNAL|IMMORTAL|TRAINEE|MOD)/g"
-	]
+	"us.mineplex.com": {
+		"pattern": "([abcef0-9])\\w+ ",
+		"lookup": {
+			"start": 1,
+			"ignore": [
+				"MPS",
+				"Host",
+				"Co-Host",
+				"el?"
+			],
+			"tag": [
+				"ULTRA",
+				"HERO",
+				"LEGEND",
+				"TITAN",
+				"ETERNAL",
+				"IMMORTAL",
+				"YT",
+				"STREAM",
+				"YOUTUBE",
+				"TRAINEE",
+				"MOD",
+				"SR.MOD",
+				"ADMIN",
+				"LEADER",
+				"OWNER"
+			]
+		}
+	},
+	"vanilla": {
+		"pattern": "\\<(?s)(.*)\\>",
+		"lookup": {
+			"start": 0,
+			"ignore": [],
+			"tag": []
+		}
+	}
 }
