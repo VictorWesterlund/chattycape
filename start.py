@@ -13,7 +13,7 @@ import requests
 class Chattycape(Thread):
 
 	pollRate = 1 # Logfile pollrate
-	updateRate = 1 # Update rate of Labylib cosmetic
+	updateRate = 15 # Update rate of Labylib cosmetic
 
 	def __init__(self,event,phpsessid,endpoint,logfile,me = "None"):
 		Thread.__init__(self)
@@ -23,7 +23,7 @@ class Chattycape(Thread):
 		self.server = None # Connected to server (hostname)
 		self.config = None # Chat config for current server
 
-		self.line = "[21:42:25] [main/INFO]: [CHAT] 725 IMMORTAL VicW test"
+		self.line = ""
 		self.i = 0
 
 	# Read last line from logfile
@@ -52,7 +52,7 @@ class Chattycape(Thread):
 				continue
 			
 			if substr in tagList:
-				tag = substr
+				tag = substr.lower()
 				continue
 			
 			# Not ignored, and not a tag, so assume we've reached the username
@@ -65,7 +65,7 @@ class Chattycape(Thread):
 	def update(self):
 		args = self.getUser() # Get minecraft username and tag
 
-		urlparams = f"?server={self.server}&ign={args[0]}&rank={args[1]}"
+		urlparams = f"?server={self.server}&username={args[0]}&tag={args[1]}"
 
 		# Save cape texture from endpoint to disk
 		with open(".cache.png","wb") as handle:
@@ -80,7 +80,8 @@ class Chattycape(Thread):
 
 				handle.write(block)
 		
-		# TODO: Labylib here
+		cape = Cape.Texture(self.params[0],".cache.png")
+		cape.update()
 
 	# ----------------------------
 
@@ -118,7 +119,7 @@ class Main:
 		print("-- Labylib Chattycape --")
 		self.logfile = self.locate()
 
-		self.endpoint = self.prompt("Cape render endpoint","http://192.168.86.21/victor-westerlund/labylib-chattycape/back-end/render.php")
+		self.endpoint = self.prompt("Cape render endpoint","https://api.victorwesterlund.com/chattycape")
 		self.me = self.prompt("My Minecraft in-game name (Case Sensitive)","Don't exclude me")
 		self.phpsessid = self.prompt("PHPSESSID cookie")
 
@@ -168,7 +169,7 @@ class Main:
 
 		# Failed to locate Minecraft-installation automatically
 
-		path = self.prompt("Path to your '.minecraft'-folder","/mnt/c/Users/victo/AppData/Roaming/.minecraft")
+		path = self.prompt("Path to your '.minecraft'-folder")
 		
 		if(Path(path).exists()):
 			return path + mclog
