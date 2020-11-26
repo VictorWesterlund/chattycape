@@ -9,6 +9,8 @@ This labylib extension updates your LabyMod cape with tags from Minecraft chat.
 * [Custom Render Endpoint](#custom-render-endpoint)
 * [Contribute](#contribute)
 
+### [List of supported servers OOTB](https://github.com/VictorWesterlund/chattycape/wiki/Default-endpoint:-Supported-servers)
+
 ## Get Started
 
 ### IMPORTANT:
@@ -56,6 +58,8 @@ $ python3 start.py
 4. *When you want exit:* Press <kbd>⏎ Enter</kbd> / <kbd>⏎ Return</kbd> to close
 
 ## Default Behavior
+
+### [List of supported servers OOTB](https://github.com/VictorWesterlund/chattycape/wiki/Default-endpoint:-Supported-servers)
 
 If you start Chattycape with the default render endpoint; `https://api.victorwesterlund.com/chattycape` - your cape will update every **15 seconds** (limit) with a graphic of the player **avatar, name and tag** (usually "rank") who last said something in public chat (See collage at the start of this document). It only works on a handful of servers at the moment, more can be added in the future. 
 
